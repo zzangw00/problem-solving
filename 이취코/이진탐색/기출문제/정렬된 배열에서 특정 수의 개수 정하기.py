@@ -1,5 +1,6 @@
 n, x = map(int, input().split())
 arr = list(map(int, input().split()))
+none = -1
 
 
 def first(arr, target, start, end):
@@ -31,4 +32,4 @@ b = last(arr, x, 0, n - 1)
 if first(arr, x, 0, n - 1) != -1:
     print(b - a + 1)
 else:
-    print(-1)
+    print(none)
