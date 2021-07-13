@@ -4,20 +4,20 @@ for i in range(n):
     arr.append(int(input()))
 arr.sort()
 
-start = arr[1] - arr[0]
-end = arr[n - 1] - arr[0]
-result = []
-while start <= end:
+start = 1
+end = arr[-1] - arr[0]
+result = 0
+while (start <= end):
     mid = (start + end) // 2
     current = arr[0]
     cnt = 1
-    for i in range(1, n):
-        if current + mid <= arr[i]:
+    for i in range(1, len(arr)):
+        if arr[i] >= current + mid:
             current = arr[i]
             cnt += 1
     if cnt >= c:
         start = mid + 1
-        result.append(mid)
+        result = mid
     else:
         end = mid - 1
-print(max(result))
+print(result)
