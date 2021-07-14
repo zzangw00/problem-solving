@@ -16,7 +16,7 @@ for i in range(n):
         if graph[i][j] == 1:
             houseList.append((i, j))
 
-result = 100
+result = 100000000
 for i in range(1, m + 1):
     combination = list(itertools.combinations(chickenList, i))
     for c in combination:
