@@ -17,3 +17,7 @@ Step by step
 -   🖋 프로그래머스
 
     -   [프로그래머스](https://github.com/zzangw00/problem-solving/tree/main/프로그래머스)
+
+-   🖋 다시 풀어볼 문제들
+    
+    -   [Wiki](https://github.com/zzangw00/problem-solving/wiki)
