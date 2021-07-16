@@ -7,11 +7,11 @@ for i in range(k):
 def binarySearch(arr, target, start, end):
     answer = []
     while start <= end:
-        count = 0
+        cnt = 0
         mid = (start + end) // 2
         for i in arr:
-            count += i // mid
-        if count >= target:
+            cnt += i // mid
+        if cnt >= target:
             answer.append(mid)
             start = mid + 1
         else:
