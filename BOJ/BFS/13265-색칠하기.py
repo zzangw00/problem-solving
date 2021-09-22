@@ -36,7 +36,6 @@ for _ in range(t):
             continue
         else:
             answer.append(bfs(graph, i, visited))
-    print(answer)
     if 'impossible' in answer:
         print('impossible')
     else:

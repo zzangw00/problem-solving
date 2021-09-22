@@ -24,4 +24,5 @@ while True:
         answer.append('no')
     else:
         answer.append('yes')
-print(answer)
+for i in answer:
+    print(i)
