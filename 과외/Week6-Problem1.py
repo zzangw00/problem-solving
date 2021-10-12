@@ -7,7 +7,6 @@ def solution(a, start, end):
     for i in range(start, end):
         sum += a[i]
     result.append(sum)
-    print(result)
     end = end - 1
     if start == end:
         return
@@ -16,4 +15,4 @@ def solution(a, start, end):
 
 solution(a, 0, len(a))
 
-# print(max(result))
+print(max(result))
