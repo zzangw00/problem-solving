@@ -1,6 +1,6 @@
 arr = [1, 3, 4, 5, 7]
 
-target = [7, 5]
+target = [5, 7]
 
 
 def binarySearch(arr, target, start, end):
