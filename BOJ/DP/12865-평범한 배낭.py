@@ -1,19 +1,25 @@
-n, k = map(int, input().split())
-
+n, k = map(int, input().split(' '))
 arr = [[0, 0]]
-d = [[0] * (k + 1) for _ in range(n + 1)]
-
 for i in range(n):
-    arr.append(list(map(int, input().split())))
+    arr.append(list(map(int, input().split(' '))))
 
-for i in range(1, n + 1):
-    for j in range(1, k + 1):
-        w = arr[i][0]
-        v = arr[i][1]
 
-        if j < w:
-            d[i][j] = d[i - 1][j]
-        else:
-            d[i][j] = max(d[i - 1][j], d[i - 1][j - w] + v)
+def solution(k, arr):
+    answer = 0
+    dp = []
+    for _ in range(len(arr)):
+        dp.append([])
+    for i in range(len(arr)):
+        dp[i] = [0] * (k + 1)
 
-print(d[n][k])
+    for i in range(1, len(arr)):
+        for j in range(1, k + 1):
+            if j < arr[i][0]:
+                dp[i][j] = dp[i - 1][j]
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i - 1]
+                               [j - arr[i][0]] + arr[i][1])
+    return dp[-1][-1]
+
+
+print(solution(k, arr))
