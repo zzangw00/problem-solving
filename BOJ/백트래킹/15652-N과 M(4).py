@@ -1,14 +1,16 @@
+from logging import makeLogRecord
+
+
 n, m = map(int, input().split())
 
 arr = []
 
 
-def dfs(a):
+def dfs(i):
     if len(arr) == m:
         print(*arr)
         return
-
-    for i in range(a, n + 1):
+    for i in range(i, n + 1):
         arr.append(i)
         dfs(i)
         arr.pop()
