@@ -19,7 +19,7 @@ def solution(k, arr):
             else:
                 dp[i][j] = max(dp[i - 1][j], dp[i - 1]
                                [j - arr[i][0]] + arr[i][1])
-    return dp[-1][-1]
+    return dp
 
 
 print(solution(k, arr))

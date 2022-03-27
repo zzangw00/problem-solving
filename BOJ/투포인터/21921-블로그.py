@@ -8,7 +8,6 @@ for i in range(1, len(dp)):
 for i in range(n - x + 1):
     end = i + x - 1
     result = dp[end + 1] - dp[i]
-    print(result)
     if result > answer:
         answer = result
         cnt = 1

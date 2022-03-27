@@ -14,7 +14,6 @@ while True:
     else:
         answer.append(a[x])
         x += 1
-print(answer)
 if x != n:
     for i in range(x, n):
         answer.append(a[i])
