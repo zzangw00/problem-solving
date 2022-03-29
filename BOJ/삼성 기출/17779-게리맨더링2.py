@@ -1,5 +1,4 @@
 import copy
-from re import L
 
 n = int(input())
 graph = [[]]
