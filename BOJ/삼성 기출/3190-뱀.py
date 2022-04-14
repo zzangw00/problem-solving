@@ -1,66 +1,54 @@
 from collections import deque
 
 n = int(input())
-k = int(input())
-apple = []
-direct = []
-direct = deque()
-for _ in range(k):
-    apple.append(list(map(int, input().split(' '))))
-l = int(input())
-for _ in range(l):
-    a, b = input().split(' ')
-    direct.append([int(a), b])
 graph = []
-for i in range(n):
+for _ in range(n):
     graph.append([0] * n)
-for i in range(len(apple)):
-    graph[apple[i][0] - 1][apple[i][1] - 1] = 2
+k = int(input())
+for _ in range(k):
+    x, y = map(int, input().split())
+    graph[x - 1][y - 1] = 1
+l = int(input())
+direct = []
+for _ in range(l):
+    direct.append(list(input().split()))
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
 
 
-def solution(graph, direct):
-    cnt = 0
-    arr = []
-    arr = deque()
-    arr.append([0, 0])
-    graph[0][0] = 1
-    dx = [0, -1, 0, 1]  # 동, 북, 서, 남
-    dy = [1, 0, -1, 0]
-    v = 0
+def solution():
+    answer = 0
+    d = 1
+    snake = deque([[0, 0]])
+    visited = []
+    for _ in range(n):
+        visited.append([0] * n)
+    visited[0][0] = 1
     while True:
-        if direct:
-            if cnt == direct[0][0]:
-                if direct[0][1] == 'L':
-                    if v == 3:
-                        v = 0
-                    else:
-                        v += 1
-                else:
-                    if v == 0:
-                        v = 3
-                    else:
-                        v -= 1
-                direct.popleft()
-        nx = arr[-1][0] + dx[v]
-        ny = arr[-1][1] + dy[v]
-        if nx >= len(graph) or nx < 0 or ny >= len(graph) or ny < 0:
-            cnt += 1
-            break
-        elif graph[nx][ny] == 1:
-            cnt += 1
+        answer += 1
+        x = snake[0][0]
+        y = snake[0][1]
+        nx = x + dx[d]
+        ny = y + dy[d]
+        if nx >= n or nx < 0 or ny >= n or ny < 0 or visited[nx][ny] == 1:
             break
         else:
-            if graph[nx][ny] == 2:
-                arr.append([nx, ny])
-                graph[nx][ny] = 1
+            if graph[nx][ny] == 1:
+                visited[nx][ny] = 1
+                snake.appendleft([nx, ny])
+                graph[nx][ny] = 0
             else:
-                arr.append([nx, ny])
-                graph[nx][ny] = 1
-                a = arr.popleft()
-                graph[a[0]][a[1]] = 0
-        cnt += 1
+                visited[nx][ny] = 1
+                snake.appendleft([nx, ny])
+                a, b = snake.pop()
+                visited[a][b] = 0
+        for i in range(len(direct)):
+            if answer == int(direct[i][0]):
+                if direct[i][1] == 'L':
+                    d = ((d - 1) + 4) % 4
+                else:
+                    d = ((d + 1) + 4) % 4
+    return answer
 
-    return cnt
 
-
-print(solution(graph, direct))
+print(solution())
