@@ -1,42 +1,38 @@
 from collections import deque
 
 n, k = map(int, input().split())
-belt = list(map(int, input().split()))
-belt = deque(belt)
+arr = list(map(int, input().split()))
+graph = deque([])
+people = deque([])
+for i in range(len(arr)):
+    graph.append(arr[i])
+    people.append(0)
 
 
-def solution(belt):
+def solution():
     answer = 0
-    robot = deque([0] * n)
     while True:
         answer += 1
-        cnt = 0
-        a = belt.pop()
-        belt.appendleft(a)
-        robot.pop()
-        robot.appendleft(0)
-        if robot[-1] == 1:
-            robot.pop()
-            robot.append(0)
+        a = graph.pop()
+        graph.appendleft(a)
+        a = people.pop()
+        people.appendleft(a)
+        if people[n - 1] == 1:
+            people[n - 1] = 0
         for i in range(n - 2, -1, -1):
-            if robot[i] == 1:
-                if robot[i + 1] == 0 and belt[i + 1] != 0:
-                    robot[i + 1] = 1
-                    robot[i] = 0
-                    belt[i + 1] -= 1
-        if robot[-1] == 1:
-            robot.pop()
-            robot.append(0)
-        if belt[0] != 0:
-            robot[0] = 1
-            belt[0] -= 1
-        for i in range(len(belt)):
-            if belt[i] == 0:
-                cnt += 1
-        if cnt >= k:
+            if people[i] == 1 and people[i + 1] == 0 and graph[i + 1] > 0:
+                people[i] = 0
+                people[i + 1] = 1
+                graph[i + 1] -= 1
+        if people[n - 1] == 1:
+            people[n - 1] = 0
+        if graph[0] > 0 and people[0] == 0:
+            graph[0] -= 1
+            people[0] = 1
+        if graph.count(0) >= k:
             break
 
     return answer
 
 
-print(solution(belt))
+print(solution())
